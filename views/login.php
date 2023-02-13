@@ -10,14 +10,16 @@
 </head>
 <body>
 <?php
-
+session_start();
 $error = false;
+$session_username = isset($_SESSION["username"]) ? $_SESSION["username"] : "";
+$session_password = isset($_SESSION["username"]) ? $_SESSION["username"] : "";
 
 if (isset($_POST['submit'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
     try {
-        $conn = new PDO("mysql:host=localhost;dbname=ftpsender", "merlin", "merlin");
+        $conn = new PDO("mysql:host=localhost;dbname=" . $_SESSION["config"]['db_name'], $_SESSION["config"]['db_username'], $_SESSION["config"]['db_password']);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $query = "SELECT password, code FROM users WHERE username = '" . $username . "'";
         $query_res = $conn->query($query);
@@ -26,11 +28,10 @@ if (isset($_POST['submit'])) {
             $pass = $res[0];
             $code = $res[1];
             if (password_verify($password, $pass)) {
-                session_start();
                 $_SESSION["username"] = $username;
                 $_SESSION["password"] = $password;
                 $_SESSION["code"] = $code;
-                header("Location: ftp.php");
+                header("Location: /views/ftp.php");
             } else {
                 $error = true;
             }
@@ -49,13 +50,15 @@ if (isset($_POST['submit'])) {
                 <div class="login__field">
                     <i class="login__icon fas fa-user"></i>
                     <label>
-                        <input name="username" type="text" class="login__input" placeholder="Nom d'utilisateur">
+                        <input name="username" type="text" class="login__input" placeholder="Nom d'utilisateur"
+                               value="<?php echo $session_username; ?>">
                     </label>
                 </div>
                 <div class="login__field">
                     <i class="login__icon fas fa-lock"></i>
                     <label>
-                        <input name="password" type="password" class="login__input" placeholder="Mot de passe">
+                        <input name="password" type="password" class="login__input" placeholder="Mot de passe"
+                               value="<?php echo $session_password; ?>">
                     </label>
                 </div>
                 <div class="error">

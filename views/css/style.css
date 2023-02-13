@@ -191,3 +191,31 @@ body {
 .social-login__icon:hover {
     transform: scale(1.5);
 }
+
+.list-h3{
+    font-weight: 500;
+    padding-left: 1rem;
+    margin:0;
+}
+
+.list-p{
+    padding-left: 1rem;
+}
+
+.tile {
+    min-width: fit-content;
+    width: 70%;
+    margin: 16px auto;
+    background-color: white;
+    height: 5.5rem;
+    border-radius: 16px;
+    padding-top:.75rem;
+    padding-left: 1rem;
+    padding-right: 2rem;
+}
+
+@media screen and (min-width: 800px) {
+    .tile {
+        margin: 16px 16px;
+    }
+}
