@@ -49,6 +49,7 @@ if (isset($_POST['download']) && isset($_POST['dlfile'])) {
             readfile($local_file);
         }
         ftp_close($ftp);
+
     } catch (Exception $e) {
         //echo "Connexion échouée: " . $e->getMessage();
     }
