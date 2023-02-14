@@ -31,7 +31,7 @@ if (isset($_POST['file_sender'])) {
         }
         ftp_close($ftp);
     } catch (Exception $e) {
-        //echo "Connexion échouée: " . $e->getMessage();
+        echo "Connexion échouée: " . $e->getMessage();
     }
 }
 if (isset($_POST['download']) && isset($_POST['dlfile'])) {
@@ -64,7 +64,7 @@ if (isset($_POST['download']) && isset($_POST['dlfile'])) {
     <form action="" enctype="multipart/form-data" method="POST">
         <input name="upload[]" type="file" multiple="multiple" accept="application/pdf"/>
         <br/><br/>
-        <button type="submit">
+        <button name="file_sender" type="submit">
             <span>Envoyer</span>
         </button>
     </form>
