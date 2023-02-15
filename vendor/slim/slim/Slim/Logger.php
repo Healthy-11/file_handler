@@ -12,21 +12,20 @@ namespace Slim;
 
 use Psr\Log\AbstractLogger;
 use Psr\Log\InvalidArgumentException;
-use Stringable;
-
-use function error_log;
 
 class Logger extends AbstractLogger
 {
     /**
-     * @param mixed             $level
-     * @param string|Stringable $message
-     * @param array<mixed>      $context
+     * @param mixed        $level
+     * @param string       $message
+     * @param array<mixed> $context
+     *
+     * @return void
      *
      * @throws InvalidArgumentException
      */
-    public function log($level, $message, array $context = []): void
+    public function log($level, $message, array $context = [])
     {
-        error_log((string) $message);
+        error_log($message);
     }
 }
