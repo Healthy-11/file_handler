@@ -23,6 +23,10 @@ function db()
 
 require_once("utils.php");
 
+$app->get('/', function () {
+    header('Location: /login');
+});
+
 $app->get('/root', function (Request $request, Response $response) {
     return getResponse($response, "Root", 200);
 });
@@ -46,9 +50,18 @@ $app->get('/check_user', function (Request $request, Response $response, $args) 
 });
 
 $app->get('/login', function ($request, $response) {
-    $renderer = new PhpRenderer(__DIR__ . '/views/');
-    var_dump($renderer);
+    $renderer = new PhpRenderer(__DIR__ . '/../views/');
     return $renderer->render($response, "login.php");
+});
+
+$app->get('/to_sign', function ($request, $response) {
+    $renderer = new PhpRenderer(__DIR__ . '/../views/');
+    return $renderer->render($response, "to_sign.php");
+});
+
+$app->get('/signed', function ($request, $response) {
+    $renderer = new PhpRenderer(__DIR__ . '/../views/');
+    return $renderer->render($response, "signed.php");
 });
 
 $app->run();

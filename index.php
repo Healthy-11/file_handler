@@ -1,11 +1,11 @@
-<?php
-require_once("api/api.php");
-session_start();
-$_SESSION["config"] = json_decode(file_get_contents(".config.json"), true);
-//header('Location: /views/login.php');
-/* REDIRECT TO PAGES IF CONNECTED
-if (!isset($_SESSION["password"]) || !isset($_SESSION["username"])) {
-    header('Location: /views/login.php');
-} else {
-    header('location: /views/to_sign.php');
-}*/
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="views/css/style.css">
+    <title>FTPConnect</title>
+</head>
+<?php require_once("api/api.php"); ?>
