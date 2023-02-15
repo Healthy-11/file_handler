@@ -11,6 +11,66 @@ body {
     background: linear-gradient(90deg, #C7C5F4, #776BCC);
 }
 
+.centered {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    margin-left: 40%;
+}
+
+.sticky {
+    top: 0;
+    background: linear-gradient(90deg, #C7C5F4, #776BCC);
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+}
+
+nav {
+    display: flex; /* 1 */
+    padding: 1rem 2rem; /* 3 */
+    background: #4236a2; /* 4 */
+}
+
+nav ul {
+    margin-left: 4rem;
+    display: flex; /* 5 */
+    list-style: none; /* 6 */
+}
+
+nav li { /* 7! */
+    padding-left: 1.5rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+}
+
+nav a:hover {
+    text-decoration: none;
+    color: #b4b4e1;
+}
+
+nav h2 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    color: white;
+}
+
+@media only screen and (max-width: 600px) {
+    nav {
+        flex-direction: column;
+    }
+    nav ul {
+        flex-direction: column;
+        padding-top: 0.5rem;
+    }
+    nav li {
+        padding: 0.5rem 0;
+    }
+}
+
 .container {
     display: flex;
     align-items: center;

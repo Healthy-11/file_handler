@@ -1,7 +1,9 @@
 {
   "require": {
+    "slim/php-view": "^3.2",
+    "slim/slim": "4.*",
     "ext-pdo": "*",
-    "ext-ftp": "*",
+    "slim/psr7": "^1.1.0",
     "ext-json": "*"
   }
 }

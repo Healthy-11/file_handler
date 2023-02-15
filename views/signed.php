@@ -11,29 +11,6 @@
 
 <?php
 session_start();
-if (!isset($_SESSION["password"]) || !isset($_SESSION["username"])) {
-    header('Location: /');
-}
-
-if (isset($_POST['file_sender'])) {
-    try {
-        $ftp = ftp_connect("focus.immo", 21);
-        ftp_login($ftp, $_SESSION["config"]['ftp_username'], $_SESSION["config"]['ftp_password']);
-        ftp_pasv($ftp, true);
-        $total = count($_FILES['upload']['name']);
-        for ($i = 0; $i < $total; $i++) {
-            $file = $_FILES['upload']['tmp_name'][$i];
-            $ret = ftp_nb_put($ftp, $_SESSION["code"] . "/toSign/" . $_FILES['upload']['name'][$i], $file, FTP_BINARY, FTP_AUTORESUME);
-            while (FTP_MOREDATA == $ret) {
-                echo ">";
-                $ret = ftp_nb_continue($ftp);
-            }
-        }
-        ftp_close($ftp);
-    } catch (Exception $e) {
-        echo "Connexion échouée: " . $e->getMessage();
-    }
-}
 if (isset($_POST['download']) && isset($_POST['dlfile'])) {
     $file_name = $_POST['dlfile'];
     try {
@@ -41,7 +18,6 @@ if (isset($_POST['download']) && isset($_POST['dlfile'])) {
         ftp_login($ftp, $_SESSION["config"]['ftp_username'], $_SESSION["config"]['ftp_password']);
         ftp_pasv($ftp, true);
         $local_file = "downloaded.pdf";
-        echo $file_name;
         if (ftp_get($ftp, $local_file, $_SESSION["code"] . "/signed/" . $file_name, FTP_BINARY)) {
             $file_new_name = $file_name;
             header('Content-Type: application/pdf');
@@ -57,22 +33,7 @@ if (isset($_POST['download']) && isset($_POST['dlfile'])) {
 ?>
 
 <body>
-<div>
-    <h1>Envoi vers FTP</h1>
-
-    <h3>
-        Choisir un ou des fichier(s) :
-    </h3>
-    <form action="" enctype="multipart/form-data" method="POST">
-        <input name="upload[]" type="file" multiple="multiple" accept="application/pdf"/>
-        <br/><br/>
-        <button name="file_sender" type="submit">
-            <span>Envoyer</span>
-        </button>
-    </form>
-</div>
-<br>
-
+<?php require("nav.php") ?>
 <?php
 $ftp = ftp_connect("focus.immo", 21);
 ftp_login($ftp, $_SESSION["config"]['ftp_username'], $_SESSION["config"]['ftp_password']);

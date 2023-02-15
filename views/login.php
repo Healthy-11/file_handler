@@ -1,3 +1,5 @@
+<?php use Slim\Views\PhpRenderer;
+?>
 <!doctype html>
 <html lang="fr">
 <head>
@@ -31,7 +33,7 @@ if (isset($_POST['submit'])) {
                 $_SESSION["username"] = $username;
                 $_SESSION["password"] = $password;
                 $_SESSION["code"] = $code;
-                header("Location: /views/ftp.php");
+                header("Location: /views/to_sign.php");
             } else {
                 $error = true;
             }
