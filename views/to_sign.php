@@ -42,7 +42,7 @@ foreach ($buff as $key): ?>
     }
     ?>
     <div class="tile">
-        <img src="views/img/pdf.svg" width="50">
+        <img src="/views/img/pdf.svg" width="50">
         <h3 class="list-h3"><?= $name ?></h3>
         <p class="list-p"><?= $info[5] . " " . $info[6] . " " . $info[7] ?></p>
         <p class="list-p"><?= $info[4] . " B" ?></p>
