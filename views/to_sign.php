@@ -3,7 +3,6 @@
 <?php require("header.php");?>
 <body>
 <?php
-session_start();
 require("nav.php");
 ?>
 <div class="sticky">
