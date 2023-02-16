@@ -27,7 +27,7 @@ $app->get('/', function () {
     header('Location: /login');
 });
 
-$app->get('/api/root', function (Request $request, Response $response) {
+$app->get('/root', function (Request $request, Response $response) {
     return getResponse($response, "Root", 200);
 });
 

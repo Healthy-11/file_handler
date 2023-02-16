@@ -22,7 +22,7 @@ function userExists(Request $request): bool
     }
 }
 
-$app->get('/api/check_user', function (Request $request, Response $response, $args) {
+$app->get('/check_user', function (Request $request, Response $response, $args) {
     if (userExists($request)) {
         return getResponse($response, "ok", 200);
     } else {
@@ -30,14 +30,14 @@ $app->get('/api/check_user', function (Request $request, Response $response, $ar
     }
 });
 
-$app->post('/api/create_user', function (Request $request, Response $response) {
+$app->post('/create_user', function (Request $request, Response $response) {
     if (userExists($request)) {
         $data = $request->getParsedBody();
         $username = $data["username"];
         $checkExist = db()->query("SELECT * FROM users WHERE username='" . $username . "' LIMIT 1");
         if ($checkExist) {
             if (json_encode($checkExist->fetchAll(PDO::FETCH_ASSOC)) == '[]') {
-                $encrypted = hash(PASSWORD_DEFAULT, $data["password"]);
+                $encrypted = password_hash($data["password"], PASSWORD_DEFAULT);
                 $code = $data["code"];
                 $query = "INSERT INTO users (username, password, code) VALUES ('" . $username . "', '" . $encrypted . "', '" . $code . "')";
                 $stmt = db()->query($query);
