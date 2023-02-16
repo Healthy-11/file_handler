@@ -5,8 +5,8 @@
 <?php
 session_start();
 $error = false;
-$session_username = isset($_SESSION["username"]) ? $_SESSION["username"] : "";
-$session_password = isset($_SESSION["username"]) ? $_SESSION["username"] : "";
+$session_username = $_SESSION["username"] ?? "";
+$session_password = $_SESSION["password"] ?? "";
 
 if (isset($_GET)) {
     $error = $_GET["error"];

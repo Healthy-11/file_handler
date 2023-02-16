@@ -30,7 +30,7 @@ $app->get('/api/check_user', function (Request $request, Response $response, $ar
     }
 });
 
-$app->post('/api/create_user', function ($request, $response) {
+$app->post('/api/create_user', function (Request $request, Response $response) {
     if (userExists($request)) {
         $data = $request->getParsedBody();
         $username = $data["username"];
