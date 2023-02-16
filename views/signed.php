@@ -1,4 +1,7 @@
+<!doctype html>
+<html lang="fr">
 <?php
+require("header.php");
 session_start();
 if (isset($_POST['download']) && isset($_POST['dlfile'])) {
     $file_name = $_POST['dlfile'];

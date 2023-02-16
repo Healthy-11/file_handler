@@ -1,5 +1,4 @@
 <?php
-
 function getResponse($response, $data, $code) {
     $response = $response->withStatus($code);
     $response->getBody()->write($data);

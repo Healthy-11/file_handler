@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Raleway, sans-serif;
+    font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Helvetica, Arial,
+    sans-serif;
 }
 
 body {
@@ -12,16 +12,20 @@ body {
 }
 
 .centered {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-    margin-left: 40%;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.whited {
+    color: white;
 }
 
 .sticky {
-    top: 0;
-    background: linear-gradient(90deg, #C7C5F4, #776BCC);
-    position: -webkit-sticky; /* Safari */
-    position: sticky;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #604DEB;
 }
 
 nav {
@@ -253,16 +257,21 @@ nav h2 {
 }
 
 .list-h3{
-    font-weight: 500;
+    font-weight: 600;
     padding-left: 1rem;
     margin:0;
 }
 
 .list-p{
+    color: #565656;
     padding-left: 1rem;
 }
 
 .tile {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 10px;
+    box-shadow: 8px 5px 5px rgba(0, 0, 0, 0.45);
     min-width: fit-content;
     width: 70%;
     margin: 16px auto;
@@ -276,6 +285,7 @@ nav h2 {
 
 @media screen and (min-width: 800px) {
     .tile {
-        margin: 16px 16px;
+        margin: 16px auto;
+        width: 80%;
     }
 }

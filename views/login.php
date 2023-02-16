@@ -1,9 +1,18 @@
+<!doctype html>
+<html lang="fr">
+<?php require("header.php");?>
 <body>
 <?php
 session_start();
 $error = false;
 $session_username = isset($_SESSION["username"]) ? $_SESSION["username"] : "";
 $session_password = isset($_SESSION["username"]) ? $_SESSION["username"] : "";
+
+if (isset($_GET)) {
+    $error = $_GET["error"];
+    echo '<script>window.history.replaceState({}, document.title, "/" + "login");</script>';
+    unset($_GET);
+}
 ?>
 <div class="container">
     <div class="screen">

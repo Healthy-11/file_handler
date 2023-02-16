@@ -36,5 +36,5 @@ if ($error) {
     $_SESSION["username"] = "";
     $_SESSION["password"] = "";
     $_SESSION["code"] = "";
-    header("Location: /login");
+    header("Location: /login?error=true");
 }
