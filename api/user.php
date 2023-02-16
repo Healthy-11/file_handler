@@ -37,7 +37,7 @@ $app->post('/api/create_user', function (Request $request, Response $response) {
         $checkExist = db()->query("SELECT * FROM users WHERE username='" . $username . "' LIMIT 1");
         if ($checkExist) {
             if (json_encode($checkExist->fetchAll(PDO::FETCH_ASSOC)) == '[]') {
-                $encrypted = password_hash($data["password"], PASSWORD_DEFAULT);
+                $encrypted = hash(PASSWORD_DEFAULT, $data["password"]);
                 $code = $data["code"];
                 $query = "INSERT INTO users (username, password, code) VALUES ('" . $username . "', '" . $encrypted . "', '" . $code . "')";
                 $stmt = db()->query($query);
