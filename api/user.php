@@ -22,11 +22,38 @@ function userExists(Request $request): bool
     }
 }
 
+function getUser(Request $request)
+{
+    $auth = $request->getHeader('Authorization');
+    $basic = explode(":", base64_decode(explode(" ", $auth[0])[1]));
+    $username = $basic[0];
+    $password = $basic[1];
+    $stmt = db()->query("SELECT * FROM users WHERE username = '" . $username . "'");
+    $res = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($res) {
+        if (password_verify($password, $res["password"])) {
+            return json_encode($res);
+        } else {
+            return "Utilisateur ou mot de passe incorrect";
+        }
+    } else {
+        return "Utilisateur ou mot de passe incorrect";
+    }
+}
+
 $app->get('/check_user', function (Request $request, Response $response, $args) {
     if (userExists($request)) {
         return getResponse($response, "ok", 200);
     } else {
         return getUserNotFoundKO($response);
+    }
+});
+
+$app->get('/get_my_user', function (Request $request, Response $response, $args) {
+    if (userExists($request)) {
+        return getResponse($response, getUser($request), 200);
+    } else {
+        return getUserNotFound($response);
     }
 });
 
