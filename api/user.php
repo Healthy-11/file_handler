@@ -34,26 +34,18 @@ function getUser(Request $request)
         if (password_verify($password, $res["password"])) {
             return json_encode($res);
         } else {
-            return "Utilisateur ou mot de passe incorrect";
+            return "ko";
         }
     } else {
-        return "Utilisateur ou mot de passe incorrect";
+        return "ko";
     }
 }
 
 $app->get('/check_user', function (Request $request, Response $response, $args) {
     if (userExists($request)) {
-        return getResponse($response, "ok", 200);
+        return getResponse($response,  getUser($request), 200);
     } else {
         return getUserNotFoundKO($response);
-    }
-});
-
-$app->get('/get_my_user', function (Request $request, Response $response, $args) {
-    if (userExists($request)) {
-        return getResponse($response, getUser($request), 200);
-    } else {
-        return getUserNotFound($response);
     }
 });
 
