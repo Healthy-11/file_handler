@@ -9,7 +9,14 @@ $session_username = $_SESSION["username"] ?? "";
 $session_password = $_SESSION["password"] ?? "";
 
 if (isset($_GET)) {
-    $error = $_GET["error"];
+    if (isset($_GET["error"])) {
+        $error = $_GET["error"];
+    }
+    if (isset($_GET["logout"])) {
+        $session_username = "";
+        $session_password = "";
+        $_SESSION = [];
+    }
     echo '<script>window.history.replaceState({}, document.title, "/" + "login");</script>';
     unset($_GET);
 }
