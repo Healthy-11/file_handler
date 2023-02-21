@@ -17,8 +17,6 @@ if (isset($_POST['download'])) {
             $local_file = "downloaded.pdf";
             if (ftp_get($ftp, $local_file, $_SESSION["code"] . $remote . $file_name, FTP_BINARY)) {
                 $file_new_name = trim($file_name);
-                header('Content-Type: application/pdf');
-                echo $file_new_name;
                 header("Content-Disposition: attachment; filename=\"" . $file_new_name . '"');
                 readfile($local_file);
                 unlink($local_file);

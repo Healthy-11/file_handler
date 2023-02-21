@@ -15,7 +15,7 @@ include "functions.php";
             Choisir un ou des fichier(s) :
         </h3>
         <form action="/views/upload_file.php" enctype="multipart/form-data" method="POST">
-            <input class="file_dl" name="upload[]" type="file" multiple="multiple" accept="application/pdf"/>
+            <input class="file_dl" name="upload[]" type="file" multiple="multiple"/>
             <button class="dl" name="file_sender" type="submit">Envoyer</button>
         </form>
     </div>
@@ -41,10 +41,11 @@ include "functions.php";
                     $name = $info[$i];
                 }
             }
-            $type = "pdf";
+            $ext = explode(".", $name);
+            $end_ext = end($ext);
             ?>
-            <div class="tile <?= $type ?>">
-                <h3 class="list-h3"><?= $name ?></h3>
+            <div class="tile <?= $end_ext ?>">
+                <h3 class="list-h3"><?= preg_replace('/\\.[^.\\s]{3,4}$/', '', $name); ?></h3>
                 <p class="list-p"><?= displayDate($info[5], $info[6], $info[7]) ?></p>
                 <form class="form_download" method="POST" action="/views/download_file.php">
                     <input type="hidden" name="dlfileToSign" value="<?= $name ?>"/>
@@ -55,3 +56,21 @@ include "functions.php";
     </div>
 </div>
 </body>
+
+<?php
+if (isset($_GET)) {
+    if (isset($_GET["error"])) {
+        $error = $_GET["error"];
+        if ($error == 0) {
+            echo '<script>$.notify("Fichier(s) téléchargé(s) avec succès", "success");</script>';
+        }
+        else if ($error == 1) {
+            echo '<script>$.notify("Téléchargement échoué", "error");</script>';
+        }
+        else if ($error == 2) {
+            echo '<script>$.notify("Type de fichier non supporté", "error");</script>';
+        }
+    }
+    echo '<script>window.history.replaceState({}, document.title, "/" + "to_sign");</script>';
+    unset($_GET);
+}

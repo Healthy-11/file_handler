@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="fr">
-<?php require("header.php");?>
+<?php require("header.php"); ?>
 <body>
 <?php
 session_start();
@@ -11,11 +11,13 @@ $session_password = $_SESSION["password"] ?? "";
 if (isset($_GET)) {
     if (isset($_GET["error"])) {
         $error = $_GET["error"];
+        echo '<script>$.notify("Utilisateur ou mot de passe incorrect", "error");</script>';
     }
     if (isset($_GET["logout"])) {
         $session_username = "";
         $session_password = "";
         $_SESSION = [];
+        echo '<script>$.notify("Déconnecté", "warn");</script>';
     }
     echo '<script>window.history.replaceState({}, document.title, "/" + "login");</script>';
     unset($_GET);
