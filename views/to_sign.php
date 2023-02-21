@@ -41,8 +41,9 @@ include "functions.php";
                     $name = $info[$i];
                 }
             }
+            $type = "pdf";
             ?>
-            <div class="tile">
+            <div class="tile <?= $type ?>">
                 <h3 class="list-h3"><?= $name ?></h3>
                 <p class="list-p"><?= displayDate($info[5], $info[6], $info[7]) ?></p>
                 <form class="form_download" method="POST" action="/views/download_file.php">

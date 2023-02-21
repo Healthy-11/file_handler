@@ -8,7 +8,7 @@
 }
 
 body {
-    background: linear-gradient(90deg, #ae67be, #7464da);
+    background: linear-gradient(45deg, rgba(0, 53, 102, 0.75), rgba(6, 115, 110, 0.9));
 }
 
 .centered {
@@ -159,11 +159,11 @@ nav h2 {
 }
 
 .screen {
-    background: linear-gradient(90deg, #F49D95, #ffffff);
+    background: linear-gradient(110deg, #F49D95, #ffffff);
     position: relative;
     height: 600px;
     width: 360px;
-    box-shadow: 0px 0px 24px #7464da;
+    box-shadow: 0px 0px 24px #575757;
     border-radius: 16px;
 }
 
@@ -387,12 +387,15 @@ nav h2 {
     align-items: start;
     gap: 10px 30px;
     align-content: start;
-    box-shadow: 0px 0px 8px #b2b2b2;
     min-width: 90%;
-    background: #faf7ff url("/views/img/pdf.svg") no-repeat 24px center;
-    background-size: 50px;
+    background: #faf7ff;
+    background-size: 50px !important;
     height: 5.5rem;
     border-radius: 16px;
+}
+
+.tile.pdf{
+    background: #faf7ff url("/views/img/pdf.svg") no-repeat 24px center;
 }
 
 @media screen and (min-width: 1000px) {
