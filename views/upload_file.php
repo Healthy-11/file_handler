@@ -1,6 +1,6 @@
 <?php
 session_start();
-$error = 0;
+$error = [];
 if (isset($_POST['file_sender'])) {
     try {
         $ftp = ftp_connect("focus.immo", 21);
@@ -12,19 +12,25 @@ if (isset($_POST['file_sender'])) {
             if (in_array($_FILES['upload']['type'][$i], $accepted_values)) {
                 $file = $_FILES['upload']['tmp_name'][$i];
                 $ret = ftp_nb_put($ftp, $_SESSION["code"] . "/toSign/" . $_FILES['upload']['name'][$i], $file, FTP_BINARY, FTP_AUTORESUME);
+                $downloaded = false;
                 while (FTP_MOREDATA == $ret) {
                     $ret = ftp_nb_continue($ftp);
+                    $downloaded = true;
+                }
+                if ($downloaded) {
+                    $error[] = 0;
+                } else {
+                    $error[] = 3;
                 }
             } else {
-                $error = 2;
-                exit();
+                $error[] = 2;
             }
         }
         ftp_close($ftp);
     } catch (Exception $e) {
-        $error = 1;
+        $error[] = 1;
     }
 } else {
-    $error = 1;
+    $error[] = 1;
 }
-header("Location: ../to_sign?error=" . $error);
+header("Location: ../to_sign?error=" . json_encode($error));
