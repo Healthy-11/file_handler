@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once("functions.php");
+
 if (isset($_POST['download'])) {
     if (isset($_POST['dlfileSigned'])) {
         $file_name = $_POST['dlfileSigned'];

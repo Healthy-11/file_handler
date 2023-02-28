@@ -5,7 +5,6 @@
 <?php
 $page = "to_sign";
 require("nav.php");
-include "functions.php";
 
 ?>
 <div class="sticky">
@@ -14,7 +13,7 @@ include "functions.php";
         <h3 class="whited">
             Choisir un ou des fichier(s) :
         </h3>
-        <form action="/views/upload_file.php" enctype="multipart/form-data" method="POST">
+        <form action="/controllers/upload_file.php" enctype="multipart/form-data" method="POST">
             <input class="file_dl" name="upload[]" type="file" multiple="multiple"/>
             <button class="dl" name="file_sender" type="submit">Envoyer</button>
         </form>
@@ -42,7 +41,7 @@ include "functions.php";
             <div class="tile <?= $end_ext ?>">
                 <h3 class="list-h3"><?= preg_replace('/\\.[^.\\s]{3,4}$/', '', $name); ?></h3>
                 <p class="list-p"><?= displayDate($info[5], $info[6], $info[7]) ?></p>
-                <form class="form_download" method="POST" action="/views/download_file.php">
+                <form class="form_download" method="POST" action="/controllers/download_file.php">
                     <input type="hidden" name="dlfileToSign" value="<?= $name ?>"/>
                     <button class="dl" name="download">Télécharger</button>
                 </form>

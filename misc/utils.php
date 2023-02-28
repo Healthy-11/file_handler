@@ -1,6 +1,5 @@
 <?php
-function displayDate($month, $day, $hour): string
-{
+function displayDate($month, $day, $hour) {
     switch ($month) {
         case ("Jan"):
             $month = "janvier";

@@ -23,6 +23,9 @@ require_once("utils.php");
 require_once("routing.php");
 require_once("user.php");
 
+require_once("misc/ftp_utils.php");
+require_once("misc/utils.php");
+
 $app->get('/', function () {
     header('Location: /login');
 });

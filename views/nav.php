@@ -1,7 +1,4 @@
-<?php session_start();
-?>
-    <script src="js/jquery.js"></script>
-    <script src="js/notify.min.js"></script>
+<?php session_start();?>
     <nav class="manav">
         <h2>Signature sender</h2>
         <ul class="nav navbar-nav navbar-right">
