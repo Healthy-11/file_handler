@@ -12,12 +12,8 @@ require("nav.php") ?>
 <div class="wrapper">
     <div class="box">
         <?php
-        $ftp = ftp_connect("focus.immo", 21);
-        ftp_login($ftp, $_SESSION["config"]['ftp_username'], $_SESSION["config"]['ftp_password']);
-        ftp_pasv($ftp, true);
-        $buff = ftp_rawlist($ftp, $_SESSION["code"] . "/signed/");
-        ftp_close($ftp);
-        foreach ($buff as $key): ?>
+
+        foreach ($files as $key): ?>
             <?php $info = explode(" ", preg_replace('/\s+/', ' ', $key));
             if ($info[8] == "." || $info[8] == "..") {
                 continue;
