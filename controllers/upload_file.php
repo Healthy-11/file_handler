@@ -1,4 +1,5 @@
 <?php
+include("../misc/globals.php");
 session_start();
 $error = [];
 if (isset($_POST['file_sender'])) {
@@ -10,8 +11,6 @@ if (isset($_POST['file_sender'])) {
 
         $accepted_values = array(
             "application/pdf",
-            "image/jpg",
-            "image/png",
             "application/msword",
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             "application/vnd.openxmlformats-officedocument.wordprocessingml.template"

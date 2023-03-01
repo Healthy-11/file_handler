@@ -48,7 +48,6 @@ if (isset($_GET)) {
     if (isset($_GET["error"])) {
         $error = json_decode($_GET["error"]);
         $done = $type = $exception = $name = 0;
-
         for ($i = 0; $i < sizeof($error); $i++) {
             if ($error[$i] == $SUCCESS) {
                 $done++;

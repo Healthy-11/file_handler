@@ -1,5 +1,13 @@
 <?php
 
+function db() {
+    static $db = null;
+    if (null === $db)
+        $db = new PDO('mysql:host=localhost;dbname=' . $_SESSION["config"]['db_name'], $_SESSION["config"]['db_username'], $_SESSION["config"]['db_password']);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    return $db;
+}
+
 function extractFileName($fileNameInfo) {
     $name = "";
     for ($i = 8; $i < sizeof($fileNameInfo); $i++) {
