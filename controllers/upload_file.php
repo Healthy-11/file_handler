@@ -7,7 +7,16 @@ if (isset($_POST['file_sender'])) {
         ftp_login($ftp, $_SESSION["config"]['ftp_username'], $_SESSION["config"]['ftp_password']);
         ftp_pasv($ftp, true);
         $total = count($_FILES['upload']['name']);
-        $accepted_values = array("application/pdf", "image/jpg", "image/png", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "application/vnd.openxmlformats-officedocument.wordprocessingml.template");
+
+        $accepted_values = array(
+            "application/pdf",
+            "image/jpg",
+            "image/png",
+            "application/msword",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.template"
+        );
+
         for ($i = 0; $i < $total; $i++) {
             if (in_array($_FILES['upload']['type'][$i], $accepted_values)) {
                 $file = $_FILES['upload']['tmp_name'][$i];
@@ -17,20 +26,17 @@ if (isset($_POST['file_sender'])) {
                     $ret = ftp_nb_continue($ftp);
                     $downloaded = true;
                 }
-                if ($downloaded) {
-                    $error[] = 0;
-                } else {
-                    $error[] = 3;
-                }
+                $downloaded ? $error[] = $SUCCESS : $error[] = $NAME_ERROR;
             } else {
-                $error[] = 2;
+                $error[] = $TYPE_ERROR;
             }
         }
         ftp_close($ftp);
     } catch (Exception $e) {
-        $error[] = 1;
+        $error[] = $ERROR;
     }
 } else {
-    $error[] = 1;
+    $error[] = $ERROR;
 }
+
 header("Location: ../to_sign?error=" . json_encode($error));

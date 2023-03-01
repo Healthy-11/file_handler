@@ -1,4 +1,17 @@
 <?php
+
+function extractFileName($fileNameInfo) {
+    $name = "";
+    for ($i = 8; $i < sizeof($fileNameInfo); $i++) {
+        if ($i > 8) {
+            $name = $name . " " . $fileNameInfo[$i];
+        } else {
+            $name = $fileNameInfo[$i];
+        }
+    }
+    return $name;
+}
+
 function displayDate($month, $day, $hour) {
     switch ($month) {
         case ("Jan"):

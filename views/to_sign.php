@@ -4,9 +4,7 @@
 <body>
 <?php
 $page = "to_sign";
-require("nav.php");
-
-?>
+require("nav.php"); ?>
 <div class="sticky">
     <div class="centered">
         <h2 class="whited">Envoi vers FTP</h2>
@@ -22,22 +20,15 @@ require("nav.php");
 <div class="wrapper">
     <div class="box">
         <?php
-        foreach ($files as $key): ?>
-            <?php $info = explode(" ", preg_replace('/\s+/', ' ', $key));
-            if ($info[8] == "." || $info[8] == "..") {
-                continue;
-            }
-            $name = "";
-            for ($i = 8; $i < sizeof($info); $i++) {
-                if ($i > 8) {
-                    $name = $name . " " . $info[$i];
-                } else {
-                    $name = $info[$i];
-                }
-            }
-            $ext = explode(".", $name);
-            $end_ext = end($ext);
-            ?>
+          foreach ($files as $key) {
+              $info = explode(" ", preg_replace('/\s+/', ' ', $key));
+              if ($info[8] == "." || $info[8] == "..") {
+                  continue;
+              }
+              $name = extractFileName($info);
+              $ext = explode(".", $name);
+              $end_ext = end($ext);
+              ?>
             <div class="tile <?= $end_ext ?>">
                 <h3 class="list-h3"><?= preg_replace('/\\.[^.\\s]{3,4}$/', '', $name); ?></h3>
                 <p class="list-p"><?= displayDate($info[5], $info[6], $info[7]) ?></p>
@@ -46,27 +37,26 @@ require("nav.php");
                     <button class="dl" name="download">Télécharger</button>
                 </form>
             </div>
-        <?php endforeach; ?>
+        <?php } ?>
     </div>
 </div>
 </body>
 
 <?php
+
 if (isset($_GET)) {
     if (isset($_GET["error"])) {
         $error = json_decode($_GET["error"]);
-        $done = 0;
-        $type = 0;
-        $exception = 0;
-        $name = 0;
+        $done = $type = $exception = $name = 0;
+
         for ($i = 0; $i < sizeof($error); $i++) {
-            if ($error[$i] == 0) {
+            if ($error[$i] == $SUCCESS) {
                 $done++;
-            } else if ($error[$i] == 2) {
+            } else if ($error[$i] == $TYPE_ERROR) {
                 $type++;
-            } else if ($error[$i] == 1) {
+            } else if ($error[$i] == $ERROR) {
                 $exception++;
-            } else if ($error[$i] == 3) {
+            } else if ($error[$i] == $NAME_ERROR) {
                 $name++;
             }
         }

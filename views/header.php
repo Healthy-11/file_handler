@@ -8,3 +8,8 @@
 </head>
 <script src="/js/jquery.js"></script>
 <script src="/js/notify.min.js"></script>
+<?php
+require_once('misc/globals.php');
+require_once("misc/ftp_utils.php");
+require_once("misc/utils.php");
+?>

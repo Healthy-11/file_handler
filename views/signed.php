@@ -1,8 +1,6 @@
 <!doctype html>
 <html lang="fr">
-<?php
-require("header.php");
-?>
+<?php require("header.php"); ?>
 <body>
 <?php
 $page = "signed";
@@ -16,14 +14,7 @@ require("nav.php") ?>
             if ($info[8] == "." || $info[8] == "..") {
                 continue;
             }
-            $name = "";
-            for ($i = 8; $i < sizeof($info); $i++) {
-                if ($i > 8) {
-                    $name = $name . " " . $info[$i];
-                } else {
-                    $name = $info[$i];
-                }
-            }
+            $name = extractFileName($info);
             $ext = explode(".", $name);
             $end_ext = end($ext);
             ?>
