@@ -19,7 +19,8 @@ function db()
     return $db;
 }
 
-require_once("utils.php");
+require_once(__DIR__ . "/../utils/utils.php");
+require_once(__DIR__ . "/../utils/functions.php");
 require_once("routing.php");
 require_once("user.php");
 

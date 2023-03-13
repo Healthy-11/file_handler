@@ -1,7 +1,7 @@
 <?php session_start();
 ?>
-    <script src="js/jquery.js"></script>
-    <script src="js/notify.min.js"></script>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/notify.min.js"></script>
     <nav class="manav">
         <h2>Signature sender</h2>
         <ul class="nav navbar-nav navbar-right">
@@ -19,4 +19,5 @@
 <?php
 if (!isset($_SESSION["password"]) || !isset($_SESSION["username"])) { ?>
     <h1 class="display-message">Déconnecté</h1>
-<?php } ?>
+<?php }
+?>

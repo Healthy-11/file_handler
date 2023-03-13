@@ -6,5 +6,5 @@
     <link rel="stylesheet" href="/views/css/style.css">
     <title>FTPConnect</title>
 </head>
-<script src="/views/js/jquery.js"></script>
-<script src="/views/js/notify.min.js"></script>
+<script src="../js/jquery.js"></script>
+<script src="../js/notify.min.js"></script>

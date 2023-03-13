@@ -2,42 +2,24 @@
 <html lang="fr">
 <?php
 require("header.php");
-include "functions.php";
-
+$page = "signed";
 ?>
+
 <body>
 <?php
-$page = "signed";
 require("nav.php") ?>
 <div class="wrapper">
     <div class="box">
         <?php
-        $ftp = ftp_connect("focus.immo", 21);
-        ftp_login($ftp, $_SESSION["config"]['ftp_username'], $_SESSION["config"]['ftp_password']);
-        ftp_pasv($ftp, true);
-        $buff = ftp_rawlist($ftp, $_SESSION["code"] . "/signed/");
-        ftp_close($ftp);
-        foreach ($buff as $key): ?>
-            <?php $info = explode(" ", preg_replace('/\s+/', ' ', $key));
-            if ($info[8] == "." || $info[8] == "..") {
-                continue;
-            }
-            $name = "";
-            for ($i = 8; $i < sizeof($info); $i++) {
-                if ($i > 8) {
-                    $name = $name . " " . $info[$i];
-                } else {
-                    $name = $info[$i];
-                }
-            }
-            $ext = explode(".", $name);
+        foreach ($files as $file):
+            $ext = explode(".", $file->getName());
             $end_ext = end($ext);
             ?>
             <div class="tile <?= $end_ext ?>">
-                <h3 class="list-h3"><?= preg_replace('/\\.[^.\\s]{3,4}$/', '', $name); ?></h3>
-                <p class="list-p"><?= displayDate($info[5], $info[6], $info[7]) ?></p>
+                <h3 class="list-h3"><?= preg_replace('/\\.[^.\\s]{3,4}$/', '', $file->getName()); ?></h3>
+                <p class="list-p"><?= $file->getDate() ?></p>
                 <form class="form_download" method="POST" action="/views/download_file.php">
-                    <input type="hidden" name="dlfileSigned" value="<?= $name ?>"/>
+                    <input type="hidden" name="dlfileSigned" value="<?= $file->getName() ?>"/>
                     <button class="dl" name="download">Télécharger</button>
                 </form>
             </div>
