@@ -1,22 +1,22 @@
 <?php
 session_start();
-include_once("functions.php");
+include "../utils/functions.php";
 if (isset($_POST['download'])) {
     if (isset($_POST['dlfileSigned'])) {
         $file_name = $_POST['dlfileSigned'];
-        $remote = "/signed/";
+        $remote_folder = "/signed/";
     }
     if (isset($_POST['dlfileToSign'])) {
         $file_name = $_POST['dlfileToSign'];
-        $remote = "/toSign/";
+        $remote_folder = "/toSign/";
     }
-    if (isset($file_name) && isset($remote)) {
+    if (isset($file_name) && isset($remote_folder)) {
         try {
             $ftp = ftp_connect("focus.immo", 21);
             ftp_login($ftp, $_SESSION["config"]['ftp_username'], $_SESSION["config"]['ftp_password']);
             ftp_pasv($ftp, true);
             $local_file = "downloaded.pdf";
-            if (ftp_get($ftp, $local_file, $_SESSION["code"] . $remote . $file_name, FTP_BINARY)) {
+            if (ftp_get($ftp, $local_file, $_SESSION["code"] . $remote_folder . $file_name, FTP_BINARY)) {
                 $file_new_name = stripAccents(trim($file_name));
                 header("Content-Disposition: attachment; filename=\"" . $file_new_name . '"');
                 readfile($local_file);

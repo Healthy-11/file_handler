@@ -18,19 +18,19 @@ if (isset($_POST['file_sender'])) {
                     $downloaded = true;
                 }
                 if ($downloaded) {
-                    $error[] = 0;
+                    $error[] = SUCCESS;
                 } else {
-                    $error[] = 3;
+                    $error[] = ALREADY_EXISTS;
                 }
             } else {
-                $error[] = 2;
+                $error[] = WRONG_TYPE;
             }
         }
         ftp_close($ftp);
     } catch (Exception $e) {
-        $error[] = 1;
+        $error[] = EXCEPTION;
     }
 } else {
-    $error[] = 1;
+    $error[] = EXCEPTION;
 }
 header("Location: ../to_sign?error=" . json_encode($error));

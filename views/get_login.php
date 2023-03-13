@@ -5,10 +5,8 @@ if (isset($_POST['submit'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
     try {
-        $conn = new PDO("mysql:host=localhost;dbname=" . $_SESSION["config"]['db_name'], $_SESSION["config"]['db_username'], $_SESSION["config"]['db_password']);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $query = "SELECT password, code FROM users WHERE username = '" . $username . "'";
-        $query_res = $conn->query($query);
+        $query_res = db()->query($query);
         $res = $query_res->fetch();
         if ($res) {
             $pass = $res[0];
