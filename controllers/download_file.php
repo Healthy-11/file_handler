@@ -12,7 +12,7 @@ if (isset($_POST['download'])) {
     }
     if (isset($file_name) && isset($remote_folder)) {
         try {
-            $ftp = ftp_connect("focus.immo", 21);
+            $ftp = ftp_connect($_SESSION["config"]['ftp_url'], 21);
             ftp_login($ftp, $_SESSION["config"]['ftp_username'], $_SESSION["config"]['ftp_password']);
             ftp_pasv($ftp, true);
             $local_file = "downloaded.pdf";
