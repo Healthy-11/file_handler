@@ -3,7 +3,7 @@ session_start();
 $error = [];
 if (isset($_POST['file_sender'])) {
     try {
-        $ftp = ftp_connect("focus.immo", 21);
+        $ftp = ftp_connect($_SESSION["config"]['ftp_url'], 21);
         ftp_login($ftp, $_SESSION["config"]['ftp_username'], $_SESSION["config"]['ftp_password']);
         ftp_pasv($ftp, true);
         $total = count($_FILES['upload']['name']);
