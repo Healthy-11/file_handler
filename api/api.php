@@ -11,15 +11,9 @@ $app->addBodyParsingMiddleware();
 
 session_start();
 $_SESSION["config"] = json_decode(file_get_contents(".config.json"), true);
-function db()
-{
-    static $db = null;
-    if (null === $db)
-        $db = new PDO('mysql:host=localhost;dbname=' . $_SESSION["config"]['db_name'], $_SESSION["config"]['db_username'], $_SESSION["config"]['db_password']);
-    return $db;
-}
 
-require_once(__DIR__ . "/../utils/utils.php");
+require_once(__DIR__ . "/../utils/db.php");
+require_once(__DIR__ . "/../utils/responses.php");
 require_once(__DIR__ . "/../utils/functions.php");
 require_once("routing.php");
 require_once("user.php");

@@ -28,4 +28,3 @@ if (isset($_POST['download'])) {
         }
     }
 }
-//header("Location: ../signed");

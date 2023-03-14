@@ -403,23 +403,23 @@ nav h2 {
 }
 
 .tile.pdf {
-    background: #faf7ff url("/views/img/pdf.svg") no-repeat 8px center;
+    background: #faf7ff url("/img/pdf.svg") no-repeat 8px center;
 }
 
 .tile.docx {
-    background: #faf7ff url("/views/img/docx.svg") no-repeat 8px center;
+    background: #faf7ff url("/img/docx.svg") no-repeat 8px center;
 }
 
 .tile.doc {
-    background: #faf7ff url("/views/img/documents.svg") no-repeat 8px center;
+    background: #faf7ff url("/img/documents.svg") no-repeat 8px center;
 }
 
 .tile.jpg {
-    background: #faf7ff url("/views/img/jpg.svg") no-repeat 8px center;
+    background: #faf7ff url("/img/jpg.svg") no-repeat 8px center;
 }
 
 .tile.png {
-    background: #faf7ff url("/views/img/png.svg") no-repeat 8px center;
+    background: #faf7ff url("/img/png.svg") no-repeat 8px center;
 }
 
 @media screen and (min-width: 1000px) {
